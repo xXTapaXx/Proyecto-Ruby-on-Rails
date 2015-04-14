@@ -1,8 +1,38 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Products</h1>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-<table>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+       <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Product <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#newProduct" data-toggle="tab">Create Product</a></li>
+            <li><a href="#editProduct" data-toggle="tab">Edit Product</a></li>
+            <li><a href="#showProduct" data-toggle="tab">Show Product</a></li>
+            <li><a href="#" data-toggle="tab">Delete Product</a></li>
+            </ul>
+        </li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Name</th>
@@ -25,6 +55,51 @@
     <% end %>
   </tbody>
 </table>
+  <div class="tab-content">
+
+  <div class="tab-pane" id="newProduct">
+    <h1>Create Product</h1>
+    <%= form_for :product  , html: {class: "nifty_form", id: "form_crete_product"} do  |f|  %>
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :description %><br>
+          <%= f.text_field :description %>
+        </div>
+        <div class="field">
+          <%= f.label :state %><br>
+          <%= f.text_field :state %>
+        </div>
+        <div class="actions">
+
+          <a href="#" id="btnCreateProduct">Create Product</a>
+        </div>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="editProduct">
+    <h1>Edit Product</h1>
+    <%= form_for :product do |f| %>
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :description %><br>
+          <%= f.text_field :description %>
+        </div>
+        <div class="field">
+          <%= f.label :state %><br>
+          <%= f.text_field :state %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+    <% end %></div>
+  <div class="tab-pane" id="showProduct"><h1>Show Product</h1></div>
+    </div>
+</div>
 
 <br>
 

@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+
+  resources :users
+
+  get 'users/authenticate', to:'user#authenticate'
+
+  resources :sessions, only: [:new, :create, :destroy]
+  get '/signin',  to: 'sessions#new'
+  get '/signout', to: 'sessions#destroy'
+
+  get 'sessions/new'
+ # get '/user/authenticate', to: 'sessions#authenticate'
+
+
+
+
+
   resources :products
 
 
