@@ -1,0 +1,223 @@
+<html><head>
+    <title>Cliente</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/jquery-ui.css"/>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/jquery.confirm.js"></script>
+    <meta name="csrf-param" content="authenticity_token">
+    <meta name="csrf-token" content="53CIoQ83hUYZoBzNxmFcCqMy5z9EQFd6M+W5BYD+1Wd4Ik5UQrM9ZWxXF1QLIfvhINF9nhMnHZK7rPIJbseG/A==">
+</head>
+<body>
+
+<p id="notice"></p>
+
+<div class="tab-content">
+    <div class="tab-content">
+
+        <div class="tab-pane active" id="login">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-md-offset-4">
+                        <h1 class="text-center login-title">Sign in to continue to WebService</h1>
+                        <div class="account-wall">
+                            <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                                 alt="">
+                            <form action="/sessions" accept-charset="UTF-8" method="post" class="form-signin" >
+                                <input type="text" name="user[user]" id="user_user" class="form-control" placeholder="User" required autofocus>
+                                <input type="password" name="user[password]" id="user_password" class="form-control" placeholder="Password" required>
+                                <button class="btn btn-lg btn-primary btn-block btn-login" type="button">
+                                    Sign in</button>
+                                </form>
+                        </div>
+                         </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    <div class="tab-pane" id="menu">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle userLogin" data-toggle="dropdown" role="button" aria-expanded="false"></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" data-toggle="tab" onclick="logOut();">LogOut</a></li>
+                        <!--<li><a href="#deleteProduct" data-toggle="tab" onclick="dropdownDeleteProducts();">Delete Product</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Product <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#listProduct" data-toggle="tab" onclick="getProducts();">List Products</a></li>
+                        <li><a href="#newProduct" data-toggle="tab" onclick="clearResponse();">Create Product</a></li>
+                        <li><a href="#editProduct" data-toggle="tab" onclick="dropdownEditProducts();">Edit Product</a></li>
+                        <li><a href="#showProduct" data-toggle="tab" onclick="dropdownShowProducts();">Show Product</a></li>
+                        <!--<li><a href="#deleteProduct" data-toggle="tab" onclick="dropdownDeleteProducts();">Delete Product</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Transaction <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#listTransaction" data-toggle="tab" onclick="getTransactionProduct();">List Transaction</a></li>
+                        <li><a href="#newTransaction" data-toggle="tab"  onclick="dropdownTransactionProduct();" >Create Transaction</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+        </div>
+    </div>
+<div class="container">
+
+    <div class="tab-content">
+        <div class="tab-pane" id="listProduct">
+            <h1>List Product</h1>
+            </div>
+
+        <div class="tab-pane" id="listTransaction">
+            <h1>List Transaction</h1>
+        </div>
+
+        <div class="tab-pane" id="newProduct">
+            <h1>Create Product</h1>
+            <form class="nifty_form" id="product" action="/products" accept-charset="UTF-8" method="post">
+                <div class="field">
+                    <label for="product_name">Name</label><br>
+                    <input type="text" name="product[name]" id="product_name">
+                </div>
+                <div class="field">
+                    <label for="product_description">Description</label><br>
+                    <input type="text" name="product[description]" id="product_description">
+                </div>
+                <div class="field">
+                    <label for="product_state">State</label><br>
+                    <input type="text" name="product[state]" id="product_state">
+                </div>
+
+                <div class="actions"><br/>
+
+                    <a href="#" id="btnCreateProduct" class="btn btn-success">Create Product</a>
+                </div>
+            </form>  </div>
+
+        <div class="tab-pane" id="newTransaction">
+            <h1>Create Transaction</h1>
+            <select class="dropdownFirstTransactionProduct">
+                <option value="first"> Product_req_id </option>
+            </select>
+            <select class="dropdownsecondTransactionProduct">
+                <option value="second"> Product_offered_id  </option>
+            </select>
+            <!--<li class="dropdown">
+                <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> First Product Transaction <span class="caret"> </span></a>
+                <ul class="dropdown-menu dropdownFirstTransactionProduct" id="firstTransaction" role="menu">
+
+                </ul>
+            </li><br/>
+
+            <li class="dropdown">
+                <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Second Product Transaction <span class="caret"> </span></a>
+                <ul class="dropdown-menu dropdownsecondTransactionProduct" id="secondTransaction" role="menu">
+
+                </ul>
+            </li>-->
+
+
+            <form class="nifty_form" id="form-create-transaction" action="/transaction" accept-charset="UTF-8" method="post">
+                <input type="hidden" name="transaction[product_req_id]" id="transaction_product_req_id" required/>
+                <input type="hidden" name="transaction[product_offered_id]" id="transaction_product_offered_id" required/><br/>
+
+                    <a href="#" id="btnCreateTransaction" class="btn btn-success">Create Transaction</a>
+
+            </form>  </div>
+
+        <div class="tab-pane" id="editProduct">
+            <h1>Edit Product</h1>
+
+            <li class="dropdown">
+                <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Edit Product <span class="caret"> </span></a>
+                <ul class="dropdown-menu dropdownEditProducts" role="menu">
+
+                </ul>
+            </li> <br/>
+
+            <form action="/products" accept-charset="UTF-8" method="post" id="form_edit_product">
+                <div class="field">
+                    <label for="product_name">Name</label><br>
+                    <input type="text" name="product[name]" id="edit_product_name" class="edit_product_name">
+                </div>
+                <div class="field">
+                    <label for="product_description">Description</label><br>
+                    <input type="text" name="product[description]" id="edit_product_description" class="edit_product_description">
+                </div>
+                <div class="field">
+                    <label for="product_state">State</label><br>
+                    <input type="text" name="product[state]" id="edit_product_state" class="edit_product_state">
+                </div>
+                <input type="hidden" id="edit_id_product">
+                <div class="actions"><br/>
+                    <a href="#" id="btnUpdateProduct" class="btn btn-success">Update Product</a>
+                </div>
+            </form></div>
+        <div class="tab-pane" id="showProduct">
+            <h1>Show Product</h1>
+
+            <li class="dropdown">
+                <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Show Product <span class="caret"> </span></a>
+                <ul class="dropdown-menu dropdownProducts" role="menu" id="dropdownProducts">
+
+                </ul>
+            </li>
+            <br/>
+        </div>
+
+        <div class="tab-pane" id="deleteProduct">
+
+            <h1>Delete Product</h1>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Delete Product <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu" id="dropdownDeleteProduct">
+
+                </ul>
+            </li>
+
+            <div id="dialog-confirm" class="confirm"></div>
+        </div>
+
+    </div>
+    <input type="text" id="status" name="status"/>
+    <br/><br/>
+    <textarea name="response" id="response" cols="130" rows="5" readonly = "readonly"></textarea>
+
+</div>
+
+
+
+
+</body></html>
