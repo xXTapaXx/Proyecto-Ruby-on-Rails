@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :users
+  get 'prueba', to: 'prueba#prueba'
 
-  get 'users/authenticate', to:'user#authenticate'
+
+  post 'user/authenticate', to:'users#authenticate'
+  get 'user/auth', to:'users#auth'
+  get 'user/logout', to:'users#logout'
 
   resources :sessions, only: [:new, :create, :destroy]
   get '/signin',  to: 'sessions#new'
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
 
 
 
-
+  resources :transaction
   resources :products
 
 
