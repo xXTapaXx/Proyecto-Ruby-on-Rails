@@ -9,16 +9,16 @@ class ApplicationController < ActionController::Base
   private
   def session_authenticate
 
-    if(sessiones = Session.find_by(token: request.headers[:authtoken]))
-      if(Time.now < sessiones.expired )
-        sessiones.expired = sessiones.expired + 1.minutes
-        sessiones.save
+    if(@sessiones = Session.find_by(token: request.headers[:authtoken]))
+      if(Time.now < @sessiones.expired )
+        @sessiones.expired = @sessiones.expired + 1.minutes
+        @sessiones.save
       else
-        sessiones.destroy
-        render json: {retorno: false, authtoken: request.headers[:authtoken], time: Time.now}
+        @sessiones.destroy
+        render json: @fail, status: :unauthorized, retorno: false, authtoken: request.headers[:authtoken], time: Time.now
       end
     else
-      render json: {retorno: false, authtoken: request.headers[:authtoken], time: Time.now}
+      render json: @fail, status: :unauthorized , retorno: false, authtoken: request.headers[:authtoken], time: Time.now
     end
   end
 
